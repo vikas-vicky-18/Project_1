@@ -1,3 +1,6 @@
+
+
+
 # This file contains the code for handling the resume files and extracting the relevant information from them.
 
 # Python Libraries imports
@@ -47,7 +50,19 @@ class ApplicantHandler:
         ProfessionalExperience.objects.create(**data, applicant=self.applicant)
 
     def _extract_text_data_from_pdf(self) -> str:
-        doc = fitz.open(self.applicant.resume[1:])
+
+
+
+
+        #file_path = os.path.join(settings.MEDIA_ROOT, str(self.applicant.resume))
+
+
+        file_path = os.path.abspath(self.applicant.resume)
+
+        print("Opening PDF at:", file_path)
+
+
+        doc = fitz.open(file_path)
         text = ""
         # If the pdf is more than 3 pages, only extract the first 3 pages
         # This is done as a safety measure to prevent the server from crashing

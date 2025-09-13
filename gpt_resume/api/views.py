@@ -72,6 +72,7 @@ class ApplicantSummaryAPI(generics.RetrieveAPIView):
             return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 class ResumeUploadAPI(views.APIView):
 
     permission_classes = (AllowAny,)
@@ -84,8 +85,13 @@ class ResumeUploadAPI(views.APIView):
         if not jobs.exists():
             return Response({"message": "Job not found"}, status=status.HTTP_400_BAD_REQUEST)
         files = request.FILES.getlist('files')
+
+
+
         responses = manage_pdf_files(files, job=jobs.first())
         return Response({"message": "Resumes uploaded successfully", "data": responses}, status=status.HTTP_201_CREATED)
+
+
 
 
 class ResumeUploadWithJobAPI(views.APIView):
@@ -97,6 +103,10 @@ class ResumeUploadWithJobAPI(views.APIView):
         job_description = request.POST.get("job_description")
         documents = request.FILES.getlist("files")
 
+        
+        print("Uploaded resumes:", documents)
+
+
         fs = FileSystemStorage()
 
         documents_list = []
@@ -104,10 +114,24 @@ class ResumeUploadWithJobAPI(views.APIView):
         for document in documents:
             # Generate a random string for the filename
             filename = f"{uuid.uuid4()}.pdf"
-            filename = fs.save(filename, document)
-            doc = Document(document=filename)
+            saved_name = fs.save(filename, document)
+
+            #filename = fs.save(filename, document)
+
+            full_path = fs.path(saved_name)  
+
+            doc = Document(document=saved_name)
             documents_list.append(doc)
-            file_paths.append(fs.url(filename))
+
+
+            #file_paths.append(fs.url(filename))
+
+        
+
+            file_paths.append(full_path)  # full absolute path instead of URL
+      
+            print("Saved file:", saved_name)
+            print("Full filesystem path:", full_path)
 
         Document.objects.bulk_create(documents_list)
 
@@ -117,4 +141,4 @@ class ResumeUploadWithJobAPI(views.APIView):
 
         responses = manage_pdf_files(files=file_paths, job=job)
         print("-------\n", responses, "\n-------")
-        return Response({"message": "Resumes uploaded successfully", "data": responses, "job_u_id": job.u_id}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Resumes uploaded successfully", "data": responses, "job_u_id": str(job.u_id)}, status=status.HTTP_201_CREATED)

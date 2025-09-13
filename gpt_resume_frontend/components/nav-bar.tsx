@@ -14,24 +14,24 @@ export function NavBar() {
           <path d="M47.3707 25.9044C45.458 25.9044 43.8156 25.4844 42.4434 24.6445C41.0796 23.8046 40.0276 22.6444 39.2874 21.1642C38.5556 19.6756 38.1897 17.9624 38.1897 16.0247C38.1897 14.0788 38.5639 12.3615 39.3124 10.8729C40.0608 9.37594 41.117 8.21167 42.4808 7.38005C43.853 6.54012 45.4746 6.12015 47.3458 6.12015C48.9009 6.12015 50.2772 6.40706 51.4747 6.98088C52.6806 7.54638 53.6411 8.34889 54.3563 9.38842C55.0715 10.4196 55.479 11.6255 55.5787 13.006H51.2627C51.088 12.0829 50.6722 11.3136 50.0152 10.6982C49.3666 10.0745 48.4976 9.76265 47.4081 9.76265C46.485 9.76265 45.6742 10.0121 44.9757 10.5111C44.2771 11.0018 43.7324 11.7086 43.3415 12.6317C42.959 13.5548 42.7677 14.6609 42.7677 15.9499C42.7677 17.2555 42.959 18.3782 43.3415 19.318C43.7241 20.2494 44.2605 20.9687 44.9507 21.476C45.6493 21.975 46.4684 22.2245 47.4081 22.2245C48.0734 22.2245 48.668 22.0997 49.192 21.8503C49.7242 21.5924 50.1691 21.2224 50.5267 20.74C50.8843 20.2577 51.1296 19.6714 51.2627 18.9812H55.5787C55.4706 20.3367 55.0715 21.5384 54.3812 22.5862C53.691 23.6258 52.7513 24.4407 51.5621 25.0312C50.3728 25.6133 48.9757 25.9044 47.3707 25.9044Z" fill="url(#paint4_linear_1_9766)" />
           <defs>
             <linearGradient id="paint0_linear_1_9766" x1="22.5516" y1="1.25226" x2="0.1897" y2="35.1493" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5E5ADB" />
-              <stop offset="1" stop-color="#5E5ADB" stop-opacity="0.8" />
+              <stop stopColor="#5E5ADB" />
+              <stop offset="1" stopColor="#5E5ADB" stopOpacity="0.8" />
             </linearGradient>
             <linearGradient id="paint1_linear_1_9766" x1="105.651" y1="7.11981" x2="91.8523" y2="26.3472" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5E5ADB" />
-              <stop offset="1" stop-color="#5E5ADB" stop-opacity="0.8" />
+              <stop stopColor="#5E5ADB" />
+              <stop offset="1" stopColor="#5E5ADB" stopOpacity="0.8" />
             </linearGradient>
             <linearGradient id="paint2_linear_1_9766" x1="84.9067" y1="7.12957" x2="70.6639" y2="25.7361" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5E5ADB" />
-              <stop offset="1" stop-color="#5E5ADB" stop-opacity="0.8" />
+              <stop stopColor="#5E5ADB" />
+              <stop offset="1" stopColor="#5E5ADB" stopOpacity="0.8" />
             </linearGradient>
             <linearGradient id="paint3_linear_1_9766" x1="66.9235" y1="6.85613" x2="52.3368" y2="19.2883" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5E5ADB" />
-              <stop offset="1" stop-color="#5E5ADB" stop-opacity="0.8" />
+              <stop stopColor="#5E5ADB" />
+              <stop offset="1" stopColor="#5E5ADB" stopOpacity="0.8" />
             </linearGradient>
             <linearGradient id="paint4_linear_1_9766" x1="50.3413" y1="6.89437" x2="35.9009" y2="26.1337" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5E5ADB" />
-              <stop offset="1" stop-color="#5E5ADB" stop-opacity="0.8" />
+              <stop stopColor="#5E5ADB" />
+              <stop offset="1" stopColor="#5E5ADB" stopOpacity="0.8" />
             </linearGradient>
           </defs>
         </svg>

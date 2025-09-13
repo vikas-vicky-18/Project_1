@@ -28,6 +28,18 @@ interface ApplicantTableProps {
     applicants: Applicant[];
 }
 
+
+
+
+const getInitials = (fullName?: string) => {
+  if (!fullName || fullName.trim().length === 0) return "";
+  const parts = fullName.trim().split(" ").filter(Boolean);
+  if (parts.length === 1) return parts[0][0]?.toUpperCase() ?? "";
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+};
+
+
+
 const ApplicantTable = (props: ApplicantTableProps) => {
     const applicants: Applicant[] = props.applicants;
 
@@ -45,10 +57,16 @@ const ApplicantTable = (props: ApplicantTableProps) => {
                 </TableHeader>
                 <TableBody className="overflow-y-scroll text-sm gap-0">
                     {applicants.map((applicant: Applicant) => (
-                        <TableRow key={applicant.u_id} className="p-2 grow">
+                         
+                         
+
+                        <TableRow key={applicant.u_id || applicant.email} className="p-2 grow">
                             <TableCell className="flex gap-20 py-1 items-center">
                                 <Avatar className="bg-[#F2F4F7] text-[#667085] font-semibold rounded-full my-auto text-center p-3 text-xs">
-                                    {applicant.name.split(" ")[0][0]}{applicant.name.split(" ")[applicant.name.split(" ").length - 1][0]}
+                                    
+                                    {getInitials(applicant?.name)}
+
+
                                 </Avatar>
                                 <div className="flex flex-col justify-between">
                                     <p className="font-medium text-md">{applicant.name}</p>
@@ -70,33 +88,39 @@ const ApplicantTable = (props: ApplicantTableProps) => {
 
 export const ResultPage = () => {
     const router = useRouter();
-    const { string: u_id } = router.query;
+    const { job_u_id } = router.query;
     const [recommendedProfiles, setRecommendedProfiles] = useState<Applicant[]>([]);
     const [notRecommendedProfiles, setNotRecommendedProfiles] = useState<Applicant[]>([]);
 
 
     useEffect(() => {
-        // axios.get(`http://localhost:8000/api/get-applicant-list/3f74d0bc-848d-474d-8f89-f8ede2b83438/?rec`)
-        axios.get(`http://localhost:8000/api/get-applicant-list/${u_id}/?rec`)
+        if (!job_u_id) return;
+        axios.get(`http://localhost:8000/api/get-applicant-list/77e7faef-4649-471b-8ac7-5961fa3f0c86/?rec`)
+        //axios.get("http://localhost:8000/api/get-applicant-list/3f74d0bc-848d-474d-8f89-f8ede2b83438/?rec")
+     
+
+
+       // axios.get(`http://localhost:8000/api/get-applicant-list/${job_u_id}/?rec`)
+        
 
             .then((response: AxiosResponse) => {
                 console.log(response.data);
-                setRecommendedProfiles([...response.data]);
+                setRecommendedProfiles(response.data);
             })
             .catch((error: AxiosError) => {
                 console.log(error);
             });
 
-        // axios.get(`http://localhost:8000/api/get-applicant-list/3f74d0bc-848d-474d-8f89-f8ede2b83438/?norec`)
-        axios.get(`http://localhost:8000/api/get-applicant-list/${u_id}/?norec`)
+     axios.get(`http://localhost:8000/api/get-applicant-list/77e7faef-4649-471b-8ac7-5961fa3f0c86/?norec`)
+        //axios.get(`http://localhost:8000/api/get-applicant-list/${job_u_id}/?norec`)
             .then((response: AxiosResponse) => {
                 console.log(response.data);
-                setNotRecommendedProfiles([...response.data]);
+                setNotRecommendedProfiles(response.data);
             })
             .catch((error: AxiosError) => {
                 console.log(error);
             });
-    }, [u_id]);
+    }, [job_u_id]);
 
     return (
         <div className="w-full h-screen px-8 pt-6">

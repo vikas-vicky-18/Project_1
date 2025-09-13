@@ -22,8 +22,11 @@ const ResumeUpload = () => {
   const handleDialogSubmit = (jobTitle: string | Blob, jobDescription: string | Blob) => {
     console.log(jobTitle, jobDescription);
     const formData = new FormData();
-    formData.append("job_title", jobTitle);
-    formData.append("job_description", jobDescription);
+    formData.append("job_title", jobTitle.toString());
+    formData.append("job_description", jobDescription.toString());
+
+    //formData.append("job_title", jobTitle);
+    //formData.append("job_description", jobDescription);
     files.forEach((file) => {
       formData.append("files", file);
     });

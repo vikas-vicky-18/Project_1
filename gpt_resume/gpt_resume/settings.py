@@ -10,25 +10,33 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
-import os
 from dotenv import load_dotenv
-load_dotenv()
+import os
+from pathlib import Path
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+#SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY") or "devsecret"
+DEBUG = os.getenv("DEBUG", "True") == "True"
+
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -48,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'api.middleware.corsmiddleware.CorsMiddleware',
+    #'api.middleware.corsmiddleware.CorsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,11 +87,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gpt_resume.wsgi.application'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-]
+#CORS_ALLOWED_ORIGINS = [
+    #"http://127.0.0.1:3000",
+#]
 
+#CORS_ALLOWED_ORIGINS = [
+    #"http://localhost:3000",
+    #"http://127.0.0.1:3000"
+#]
 
+CORS_ALLOW_ALL_ORIGINS = True
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -138,3 +151,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/temp_files/'
 MEDIA_ROOT = BASE_DIR/'temp_files'
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
